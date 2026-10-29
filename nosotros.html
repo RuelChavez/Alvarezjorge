@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conozca el estudio jurídico Álvarez & Landeo Abogados en Huancayo: trayectoria, formación, forma de trabajo y atención personalizada para personas, empresas e instituciones.">
+
+    <title>Nosotros | Álvarez & Landeo Abogados</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .seccion {
+            padding: 70px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .seccion-gris {
+            background: #f7f7f7;
+        }
+
+        .seccion h2.titulo-seccion {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .lista-credenciales {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 14px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .lista-credenciales li {
+            background: #fff;
+            padding: 16px 20px;
+            border-left: 4px solid #7a0019;
+            border-radius: 6px;
+        }
+
+        .linea-tiempo {
+            display: grid;
+            gap: 20px;
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+
+        .hito {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .hito .anio {
+            font-weight: 700;
+            color: #7a0019;
+        }
+
+        .pasos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .paso {
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .paso .numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #7a0019;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq details {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .faq summary {
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq details p {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ======================= -->
+<!-- NAVBAR -->
+<!-- ======================= -->
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/logo.png" alt="Logo Álvarez & Landeo">
+            <div>
+                <h2>Álvarez & Landeo</h2>
+                <p>Abogados Especialistas</p>
+            </div>
+        </a>
+
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html" class="activo" aria-current="page">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="abogados.html">Abogados</a></li>
+            <li><a href="consulta.html">Consulta</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html" class="btn-login">Iniciar Sesión</a></li>
+        </ul>
+
+        <button class="menu-btn" aria-label="Abrir menú">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
+</header>
+
+<!-- ======================= -->
+<!-- HERO -->
+<!-- ======================= -->
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Conoce Nuestro Estudio Jurídico</h1>
+        <p>
+            Más de 15 años brindando asesoría jurídica integral, representación legal
+            y soluciones claras para personas, empresas e instituciones en Huancayo.
+        </p>
+        <div class="botones">
+            <a href="consulta.html" class="btn">Solicitar Consulta</a>
+            <a href="https://wa.me/51964636475?text=Hola%20Abogado,%20quisiera%20recibir%20información."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn2">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                WhatsApp
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="img/oficina.jpg" alt="Oficina del estudio jurídico Álvarez & Landeo">
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- HISTORIA -->
+<!-- ======================= -->
+
+<section class="seccion">
+    <h2 class="titulo-seccion">Nuestra Historia</h2>
+    <p>
+        Álvarez & Landeo Abogados nació con el objetivo de ofrecer un servicio legal
+        transparente, profesional y orientado a soluciones concretas. Trabajamos con
+        atención personalizada y acompañamiento durante todo el proceso legal, desde
+        la primera consulta hasta la resolución del caso.
+    </p>
+</section>
+
+<!-- ======================= -->
+<!-- FORMACIÓN Y TRAYECTORIA -->
+<!-- ======================= -->
+
+<section class="seccion seccion-gris">
+    <h2 class="titulo-seccion">Formación y Trayectoria</h2>
+
+    <ul class="lista-credenciales">
+        <li><strong>Colegiatura:</strong> CAL N.° XXXXX</li>
+        <li><strong>Formación:</strong> Abogado por la Universidad XXXXXXXX</li>
+        <li><strong>Especialización:</strong> Maestría en XXXXXXXX</li>
+    </ul>
+
+    <div class="linea-tiempo">
+        <div class="hito">
+            <span class="anio">20XX</span>
+            <p>Inicio de la práctica profesional en la región Junín.</p>
+        </div>
+        <div class="hito">
+            <span class="anio">20XX</span>
+            <p>Fundación de Álvarez & Landeo Abogados.</p>
+        </div>
+        <div class="hito">
+            <span class="anio">Hoy</span>
+            <p>Atención a personas, empresas e instituciones en Huancayo y la región.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- MISIÓN Y VISIÓN -->
+<!-- ======================= -->
+
+<section class="mision-vision">
+    <div class="card">
+        <i class="fas fa-bullseye" aria-hidden="true"></i>
+        <h2>Misión</h2>
+        <p>
+            Brindar asesoría legal de calidad mediante soluciones eficaces y oportunas,
+            defendiendo los derechos e intereses de nuestros clientes con profesionalismo y ética.
+        </p>
+    </div>
+
+    <div class="card">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <h2>Visión</h2>
+        <p>
+            Ser un estudio jurídico de referencia en la región, reconocido por la calidad
+            de nuestro servicio, la confianza de nuestros clientes y el compromiso con la comunidad.
+        </p>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- CÓMO TRABAJAMOS -->
+<!-- ======================= -->
+
+<section class="seccion seccion-gris">
+    <h2 class="titulo-seccion">Cómo Trabajamos</h2>
+
+    <div class="pasos">
+        <div class="paso">
+            <span class="numero">1</span>
+            <h3>Evaluación</h3>
+            <p>Analizamos su caso y le explicamos sus opciones legales con claridad.</p>
+        </div>
+        <div class="paso">
+            <span class="numero">2</span>
+            <h3>Estrategia</h3>
+            <p>Definimos el camino jurídico más conveniente según su situación.</p>
+        </div>
+        <div class="paso">
+            <span class="numero">3</span>
+            <h3>Acompañamiento</h3>
+            <p>Le mantenemos informado sobre cada avance del proceso.</p>
+        </div>
+        <div class="paso">
+            <span class="numero">4</span>
+            <h3>Resolución</h3>
+            <p>Gestionamos el trámite hasta su conclusión, con trato respetuoso y reserva.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- VALORES -->
+<!-- ======================= -->
+
+<section class="valores">
+    <h2>Nuestros Valores</h2>
+
+    <div class="contenedor-servicios">
+        <div class="card">
+            <i class="fas fa-scale-balanced" aria-hidden="true"></i>
+            <h3>Ética Profesional</h3>
+            <p>Actuamos con honestidad, transparencia y responsabilidad.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-handshake" aria-hidden="true"></i>
+            <h3>Compromiso</h3>
+            <p>Cada cliente recibe atención personalizada y permanente.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-award" aria-hidden="true"></i>
+            <h3>Excelencia</h3>
+            <p>Buscamos siempre la estrategia jurídica más adecuada para cada caso.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-user-shield" aria-hidden="true"></i>
+            <h3>Confidencialidad</h3>
+            <p>Toda la información es tratada con absoluta reserva.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- DIRECTOR -->
+<!-- ======================= -->
+
+<section class="abogado">
+    <div class="foto">
+        <img src="img/abogado.png" alt="Dr. Jorge Felipe Álvarez Landeo, director del estudio">
+    </div>
+
+    <div class="descripcion">
+        <h2>Dr. Jorge Felipe Álvarez Landeo</h2>
+        <h4>Director del Estudio Jurídico</h4>
+        <p>
+            Especialista en Derecho Penal, Civil, Familiar, Laboral y Empresarial,
+            con experiencia en litigios, consultoría y representación judicial.
+        </p>
+
+        <ul>
+            <li><span aria-hidden="true">✔</span> Atención personalizada.</li>
+            <li><span aria-hidden="true">✔</span> Defensa legal especializada.</li>
+            <li><span aria-hidden="true">✔</span> Consultoría para empresas.</li>
+            <li><span aria-hidden="true">✔</span> Procesos judiciales.</li>
+            <li><span aria-hidden="true">✔</span> Asesoría preventiva.</li>
+        </ul>
+
+        <a href="consulta.html" class="btn">Solicitar una Consulta</a>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- PREGUNTAS FRECUENTES -->
+<!-- ======================= -->
+
+<section class="seccion seccion-gris">
+    <h2 class="titulo-seccion">Preguntas Frecuentes</h2>
+
+    <div class="faq">
+        <details>
+            <summary>¿Cómo solicito una consulta?</summary>
+            <p>Puede llenar el formulario de la página de Consulta o escribirnos directamente por WhatsApp.</p>
+        </details>
+        <details>
+            <summary>¿Qué información debo tener lista para la consulta?</summary>
+            <p>Reúna los documentos relacionados con su caso, como contratos, notificaciones, resoluciones o fechas importantes.</p>
+        </details>
+        <details>
+            <summary>¿Qué tan confidencial es la información que comparto?</summary>
+            <p>Toda la información está protegida por el secreto profesional.</p>
+        </details>
+        <details>
+            <summary>¿Atienden emergencias?</summary>
+            <p>Sí, atendemos urgencias por WhatsApp. Para casos penales urgentes, escríbanos de inmediato.</p>
+        </details>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- CONTACTO -->
+<!-- ======================= -->
+
+<section class="contacto">
+    <h2>Información de Contacto</h2>
+
+    <div class="contacto-grid">
+        <div>
+            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <h3>Dirección</h3>
+            <p>
+                Jr. Juan Parra del Riego N.° 472 Oficina 200
+                <br>
+                El Tambo - Huancayo
+            </p>
+        </div>
+
+        <div>
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <h3>Celular</h3>
+            <p>964636475</p>
+        </div>
+
+        <div>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <h3>Correo Electrónico</h3>
+            <p>jalvarezlandeo@gmail.com</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- FOOTER -->
+<!-- ======================= -->
+
+<footer>
+    <div class="footer-container">
+        <div>
+            <h2>Álvarez & Landeo</h2>
+            <p>Estudio Jurídico Especializado</p>
+        </div>
+        <div>
+            <h3>Contacto</h3>
+            <p>Jr. Juan Parra del Riego N.° 472 Oficina 200</p>
+            <p>El Tambo - Huancayo</p>
+            <p>964636475</p>
+            <p>jalvarezlandeo@gmail.com</p>
+        </div>
+        <div>
+            <h3>Síguenos</h3>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://wa.me/51964636475" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <p style="text-align:center;padding:20px;">
+        © 2026 Álvarez & Landeo Abogados.
+        Todos los derechos reservados.
+    </p>
+</footer>
+
+<a href="https://wa.me/51964636475?text=Hola%20Abogado,%20quisiera%20recibir%20información."
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+<script src="js/menu.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel | Álvarez & Landeo Abogados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --guinda:#7a0018; --dorado:#d4a82f; --fondo:#f4f2ef; --texto:#1f1a1a; --borde:#e2dcd6; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { font-family:"Poppins",sans-serif; background:var(--fondo); color:var(--texto); min-height:100vh; }
+        .barra { background:var(--guinda); color:#fff; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+        .barra h1 { font-size:1.1rem; font-weight:600; }
+        .barra small { color:#f1d9a0; display:block; font-weight:400; }
+        .barra button { background:transparent; color:#fff; border:1px solid #fff; padding:8px 16px; border-radius:6px; cursor:pointer; font:inherit; }
+        .barra button:hover { background:#fff; color:var(--guinda); }
+        main { max-width:1100px; margin:0 auto; padding:28px 20px 60px; }
+        .resumen { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+        .dato { background:#fff; border-left:4px solid var(--dorado); padding:14px 20px; border-radius:6px; min-width:170px; }
+        .dato strong { font-size:1.7rem; color:var(--guinda); display:block; }
+        .filtros { margin-bottom:16px; display:flex; gap:10px; flex-wrap:wrap; }
+        .filtros button { background:#fff; border:1px solid var(--borde); padding:8px 16px; border-radius:20px; cursor:pointer; font:inherit; }
+        .filtros button.activo { background:var(--guinda); color:#fff; border-color:var(--guinda); }
+        .lista { display:grid; gap:14px; }
+        .consulta { background:#fff; border:1px solid var(--borde); border-radius:8px; padding:18px 20px; }
+        .consulta.atendida { opacity:.65; }
+        .consulta header { display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+        .consulta h3 { font-size:1rem; }
+        .fecha { color:#6b625c; font-size:.85rem; }
+        .meta { color:#4a423d; font-size:.9rem; margin-bottom:10px; }
+        .texto { white-space:pre-wrap; margin-bottom:14px; }
+        .acciones { display:flex; gap:10px; flex-wrap:wrap; }
+        .acciones button, .acciones a { font:inherit; font-size:.85rem; padding:7px 14px; border-radius:6px; border:1px solid var(--guinda); background:#fff; color:var(--guinda); cursor:pointer; text-decoration:none; }
+        .acciones .peligro { border-color:#b00020; color:#b00020; }
+        .acciones button:hover, .acciones a:hover { background:#faf0f2; }
+        .estado { text-align:center; padding:40px 10px; color:#6b625c; }
+    </style>
+</head>
+<body>
+
+<div class="barra">
+    <h1>Panel de consultas <small id="usuario"></small></h1>
+    <button type="button" id="btnSalir">Cerrar sesión</button>
+</div>
+
+<main>
+    <div class="resumen">
+        <div class="dato"><strong id="totalPendientes">0</strong>Pendientes</div>
+        <div class="dato"><strong id="totalAtendidas">0</strong>Atendidas</div>
+    </div>
+
+    <div class="filtros">
+        <button type="button" data-filtro="pendientes" class="activo">Pendientes</button>
+        <button type="button" data-filtro="atendidas">Atendidas</button>
+        <button type="button" data-filtro="todas">Todas</button>
+    </div>
+
+    <p class="estado" id="estado">Cargando consultas...</p>
+    <div class="lista" id="lista"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="supabase/conexion.js"></script>
+
+<script>
+    "use strict";
+
+    const estado = document.getElementById("estado");
+    const lista = document.getElementById("lista");
+    let consultas = [];
+    let filtro = "pendientes";
+
+    function esc(texto) {
+        const d = document.createElement("div");
+        d.textContent = texto == null ? "" : String(texto);
+        return d.innerHTML;
+    }
+
+    async function iniciar() {
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+            window.location.replace("login.html");
+            return;
+        }
+        document.getElementById("usuario").textContent = data.session.user.email;
+        await cargar();
+    }
+
+    async function cargar() {
+        estado.style.display = "block";
+        estado.textContent = "Cargando consultas...";
+        const { data, error } = await supabase
+            .from("consultas")
+            .select("*")
+            .order("created_at", { ascending: false });
+        if (error) {
+            estado.textContent = "No se pudieron cargar las consultas: " + error.message;
+            return;
+        }
+        consultas = data || [];
+        dibujar();
+    }
+
+    function dibujar() {
+        const pendientes = consultas.filter(c => !c.atendida).length;
+        document.getElementById("totalPendientes").textContent = pendientes;
+        document.getElementById("totalAtendidas").textContent = consultas.length - pendientes;
+
+        const visibles = consultas.filter(c =>
+            filtro === "todas" ? true : filtro === "atendidas" ? c.atendida : !c.atendida
+        );
+
+        if (!visibles.length) {
+            lista.innerHTML = "";
+            estado.style.display = "block";
+            estado.textContent = filtro === "pendientes" ? "No hay consultas pendientes." : "No hay consultas para mostrar.";
+            return;
+        }
+
+        estado.style.display = "none";
+        lista.innerHTML = visibles.map(c => {
+            const fecha = new Date(c.created_at).toLocaleString("es-PE");
+            const tel = String(c.telefono || "").replace(/\D/g, "");
+            return `
+            <article class="consulta ${c.atendida ? "atendida" : ""}">
+                <header>
+                    <h3>${esc(c.nombre)} ${esc(c.apellido)} — ${esc(c.asunto)}</h3>
+                    <span class="fecha">${esc(fecha)}</span>
+                </header>
+                <p class="meta">${esc(c.area || "Sin área")} · ${esc(c.correo)} · ${esc(c.telefono)}</p>
+                <p class="texto">${esc(c.consulta)}</p>
+                <div class="acciones">
+                    <button type="button" data-id="${c.id}" data-accion="estado">
+                        ${c.atendida ? "Marcar como pendiente" : "Marcar como atendida"}
+                    </button>
+                    <a href="https://wa.me/51${tel}" target="_blank" rel="noopener noreferrer">Responder por WhatsApp</a>
+                    <a href="mailto:${esc(c.correo)}">Responder por correo</a>
+                    <button type="button" class="peligro" data-id="${c.id}" data-accion="borrar">Eliminar</button>
+                </div>
+            </article>`;
+        }).join("");
+    }
+
+    lista.addEventListener("click", async (e) => {
+        const btn = e.target.closest("button[data-accion]");
+        if (!btn) return;
+        const id = Number(btn.dataset.id);
+        const consulta = consultas.find(c => c.id === id);
+        if (!consulta) return;
+
+        if (btn.dataset.accion === "estado") {
+            const { error } = await supabase.from("consultas").update({ atendida: !consulta.atendida }).eq("id", id);
+            if (error) return alert("No se pudo actualizar: " + error.message);
+            consulta.atendida = !consulta.atendida;
+        }
+
+        if (btn.dataset.accion === "borrar") {
+            if (!confirm("¿Eliminar esta consulta? No se puede deshacer.")) return;
+            const { error } = await supabase.from("consultas").delete().eq("id", id);
+            if (error) return alert("No se pudo eliminar: " + error.message);
+            consultas = consultas.filter(c => c.id !== id);
+        }
+
+        dibujar();
+    });
+
+    document.querySelector(".filtros").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-filtro]");
+        if (!btn) return;
+        filtro = btn.dataset.filtro;
+        document.querySelectorAll(".filtros button").forEach(b => b.classList.toggle("activo", b === btn));
+        dibujar();
+    });
+
+    document.getElementById("btnSalir").addEventListener("click", async () => {
+        await supabase.auth.signOut();
+        window.location.replace("login.html");
+    });
+
+    iniciar();
+</script>
+
+</body>
+</html>
